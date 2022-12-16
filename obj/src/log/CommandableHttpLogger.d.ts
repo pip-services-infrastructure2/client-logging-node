@@ -1,4 +1,4 @@
 import { AbstractLogger } from './AbstractLogger';
-export declare class HttpLogger extends AbstractLogger {
+export declare class CommandableHttpLogger extends AbstractLogger {
     constructor();
 }

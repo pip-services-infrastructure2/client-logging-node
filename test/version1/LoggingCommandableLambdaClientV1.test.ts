@@ -1,9 +1,9 @@
 import { ConfigParams } from 'pip-services3-commons-nodex';
 
 import { LoggingClientFixtureV1 } from './LoggingClientFixtureV1';
-import { LoggingLambdaClientV1 } from '../../src/version1/LoggingLambdaClientV1';
+import { LoggingCommandableLambdaClientV1 } from '../../src/version1/LoggingCommandableLambdaClientV1';
 
-suite('LoggingLambdaClient', ()=> {
+suite('LoggingCommandableLambdaClient', ()=> {
     let AWS_LAMDBA_ARN = process.env["AWS_LAMDBA_ARN"] || "";
     let AWS_ACCESS_ID = process.env["AWS_ACCESS_ID"] || "";
     let AWS_ACCESS_KEY = process.env["AWS_ACCESS_KEY"] || "";
@@ -24,11 +24,11 @@ suite('LoggingLambdaClient', ()=> {
     if (lambdaConfig.getAsNullableString("connection.protocol") != "aws")
         return;
 
-    let client: LoggingLambdaClientV1;
+    let client: LoggingCommandableLambdaClientV1;
     let fixture: LoggingClientFixtureV1;
 
     setup(async () => {
-        client = new LoggingLambdaClientV1();
+        client = new LoggingCommandableLambdaClientV1();
         client.configure(lambdaConfig);
 
         fixture = new LoggingClientFixtureV1(client);

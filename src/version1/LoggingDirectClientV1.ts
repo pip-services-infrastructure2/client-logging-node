@@ -19,12 +19,12 @@ export class LoggingDirectClientV1 extends DirectClient<any> implements ILogging
         let timing = this.instrument(correlationId, 'logging.read_messages');
         
         try {
-            return await this._controller.readMessages(correlationId, filter, paging);
+            let res = await this._controller.readMessages(correlationId, filter, paging);
+            timing.endTiming();
+            return res;
         } catch (err) {
             timing.endFailure(err);
             throw err;
-        } finally {
-            timing.endTiming();
         }
     }
 
@@ -32,12 +32,12 @@ export class LoggingDirectClientV1 extends DirectClient<any> implements ILogging
         let timing = this.instrument(correlationId, 'logging.read_errors');
         
         try {
-            return await this._controller.readErrors(correlationId, filter, paging);
+            let res = await this._controller.readErrors(correlationId, filter, paging);
+            timing.endTiming();
+            return res;
         } catch (err) {
             timing.endFailure(err);
             throw err;
-        } finally {
-            timing.endTiming();
         }
     }
 
@@ -45,12 +45,12 @@ export class LoggingDirectClientV1 extends DirectClient<any> implements ILogging
         let timing = this.instrument(correlationId, 'logging.write_message');
         
         try {
-            return await this._controller.writeMessage(correlationId, message);
+            let res = await this._controller.writeMessage(correlationId, message);
+            timing.endTiming();
+            return res;
         } catch (err) {
             timing.endFailure(err);
             throw err;
-        } finally {
-            timing.endTiming();
         }
     }
 
@@ -58,12 +58,12 @@ export class LoggingDirectClientV1 extends DirectClient<any> implements ILogging
         let timing = this.instrument(correlationId, 'logging.write_messages');
         
         try {
-            return await this._controller.writeMessages(correlationId, messages);
+            let res = await this._controller.writeMessages(correlationId, messages);
+            timing.endTiming();
+            return res;
         } catch (err) {
             timing.endFailure(err);
             throw err;
-        } finally {
-            timing.endTiming();
         }
     }
 
@@ -71,12 +71,12 @@ export class LoggingDirectClientV1 extends DirectClient<any> implements ILogging
         let timing = this.instrument(correlationId, 'logging.clear');
         
         try {
-            return await this._controller.clear(correlationId);
+            let res = await this._controller.clear(correlationId);
+            timing.endTiming();
+            return res;
         } catch (err) {
             timing.endFailure(err);
             throw err;
-        } finally {
-            timing.endTiming();
         }
     }
 

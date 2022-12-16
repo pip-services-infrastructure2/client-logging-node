@@ -5,8 +5,8 @@ import { ConsoleLogger } from 'pip-services3-components-nodex';
 
 import { LoggingMemoryPersistence } from 'service-logging-node';
 import { LoggingController } from 'service-logging-node';
-import { LoggingHttpServiceV1 } from 'service-logging-node';
-import { LoggingHttpClientV1 } from '../../src/version1/LoggingHttpClientV1';
+import { LoggingCommandableHttpServiceV1 } from 'service-logging-node';
+import { LoggingCommandableHttpClientV1 } from '../../src/version1/LoggingCommandableHttpClientV1';
 import { LoggingClientFixtureV1 } from './LoggingClientFixtureV1';
 
 var httpConfig = ConfigParams.fromTuples(
@@ -15,9 +15,9 @@ var httpConfig = ConfigParams.fromTuples(
     "connection.port", 3000
 );
 
-suite('LoggingHttpClientV1', ()=> {
-    let service: LoggingHttpServiceV1;
-    let client: LoggingHttpClientV1;
+suite('LoggingCommandableHttpClientV1', ()=> {
+    let service: LoggingCommandableHttpServiceV1;
+    let client: LoggingCommandableHttpClientV1;
     let fixture: LoggingClientFixtureV1;
 
     suiteSetup(async () => {
@@ -26,7 +26,7 @@ suite('LoggingHttpClientV1', ()=> {
         let errorsPersistence = new LoggingMemoryPersistence();
         let controller = new LoggingController();
 
-        service = new LoggingHttpServiceV1();
+        service = new LoggingCommandableHttpServiceV1();
         service.configure(httpConfig);
 
         let references: References = References.fromTuples(
@@ -34,12 +34,12 @@ suite('LoggingHttpClientV1', ()=> {
             new Descriptor('service-logging', 'persistence-messages', 'memory', 'default', '1.0'), messagesPersistence,
             new Descriptor('service-logging', 'persistence-errors', 'memory', 'default', '1.0'), errorsPersistence,
             new Descriptor('service-logging', 'controller', 'default', 'default', '1.0'), controller,
-            new Descriptor('service-logging', 'service', 'http', 'default', '1.0'), service
+            new Descriptor('service-logging', 'service', 'commandable-http', 'default', '1.0'), service
         );
         controller.setReferences(references);
         service.setReferences(references);
 
-        client = new LoggingHttpClientV1();
+        client = new LoggingCommandableHttpClientV1();
         client.setReferences(references);
         client.configure(httpConfig);
 

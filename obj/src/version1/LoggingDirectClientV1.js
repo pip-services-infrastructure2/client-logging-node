@@ -21,14 +21,13 @@ class LoggingDirectClientV1 extends pip_services3_rpc_nodex_1.DirectClient {
         return __awaiter(this, void 0, void 0, function* () {
             let timing = this.instrument(correlationId, 'logging.read_messages');
             try {
-                return yield this._controller.readMessages(correlationId, filter, paging);
+                let res = yield this._controller.readMessages(correlationId, filter, paging);
+                timing.endTiming();
+                return res;
             }
             catch (err) {
                 timing.endFailure(err);
                 throw err;
-            }
-            finally {
-                timing.endTiming();
             }
         });
     }
@@ -36,14 +35,13 @@ class LoggingDirectClientV1 extends pip_services3_rpc_nodex_1.DirectClient {
         return __awaiter(this, void 0, void 0, function* () {
             let timing = this.instrument(correlationId, 'logging.read_errors');
             try {
-                return yield this._controller.readErrors(correlationId, filter, paging);
+                let res = yield this._controller.readErrors(correlationId, filter, paging);
+                timing.endTiming();
+                return res;
             }
             catch (err) {
                 timing.endFailure(err);
                 throw err;
-            }
-            finally {
-                timing.endTiming();
             }
         });
     }
@@ -51,14 +49,13 @@ class LoggingDirectClientV1 extends pip_services3_rpc_nodex_1.DirectClient {
         return __awaiter(this, void 0, void 0, function* () {
             let timing = this.instrument(correlationId, 'logging.write_message');
             try {
-                return yield this._controller.writeMessage(correlationId, message);
+                let res = yield this._controller.writeMessage(correlationId, message);
+                timing.endTiming();
+                return res;
             }
             catch (err) {
                 timing.endFailure(err);
                 throw err;
-            }
-            finally {
-                timing.endTiming();
             }
         });
     }
@@ -66,14 +63,13 @@ class LoggingDirectClientV1 extends pip_services3_rpc_nodex_1.DirectClient {
         return __awaiter(this, void 0, void 0, function* () {
             let timing = this.instrument(correlationId, 'logging.write_messages');
             try {
-                return yield this._controller.writeMessages(correlationId, messages);
+                let res = yield this._controller.writeMessages(correlationId, messages);
+                timing.endTiming();
+                return res;
             }
             catch (err) {
                 timing.endFailure(err);
                 throw err;
-            }
-            finally {
-                timing.endTiming();
             }
         });
     }
@@ -81,14 +77,13 @@ class LoggingDirectClientV1 extends pip_services3_rpc_nodex_1.DirectClient {
         return __awaiter(this, void 0, void 0, function* () {
             let timing = this.instrument(correlationId, 'logging.clear');
             try {
-                return yield this._controller.clear(correlationId);
+                let res = yield this._controller.clear(correlationId);
+                timing.endTiming();
+                return res;
             }
             catch (err) {
                 timing.endFailure(err);
                 throw err;
-            }
-            finally {
-                timing.endTiming();
             }
         });
     }

@@ -13,7 +13,7 @@ and provides high-level API to access the microservice for simple and productive
     - [writeMessage()](#operation3)
     - [writeMessages()](#operation4)
     - [clear()](#operation5)
-* [LoggingHttpClientV1 class](#client_http)
+* [LoggingCommandableHttpClientV1 class](#client_http)
 * [LoggingSenecaClientV1 class](#client_seneca)
 * [LoggingDirectClientV1 class](#client_direct)
 * [LoggingNullClientV1 class](#client_null)
@@ -61,7 +61,7 @@ var config = {
 };
 
 // Create the client instance
-var client = sdk.LoggingHttpClientV1(config);
+var client = sdk.LoggingCommandableHttpClientV1(config);
 
 // Open client connection to the microservice
 await client.open(null);
@@ -190,12 +190,12 @@ Clears all logged messages and errors
 **Activities:** 
 - correlationId: string - id that uniquely identifies transaction
 
-## <a name="client_http"></a> LoggingHttpClientV1 class
+## <a name="client_http"></a> LoggingCommandableHttpClientV1 class
 
-LoggingHttpClientV1 is a client that implements HTTP protocol
+LoggingCommandableHttpClientV1 is a client that implements HTTP protocol
 
 ```javascript
-class LoggingHttpClientV1 extends CommandableHttpClient implements ILoggingClientV1 {
+class LoggingCommandableHttpClientV1 extends CommandableHttpClient implements ILoggingClientV1 {
     constructor(config?: any);
     setReferences(references);
     open(correlationId);
